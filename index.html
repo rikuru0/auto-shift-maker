@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>シフト表自動生成ツール</title>
+    <link rel="manifest" href="./manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('./service-worker.js')
+            .then(() => console.log('Service Worker registered successfully.'))
+            .catch(error => console.log('Service Worker registration failed:', error));
+        }
+      </script>      
+</head>
+<body>
+    <h1>シフト表自動生成ツール</h1>
+    <form id="shiftForm">
+        <label for="startTime">開始時間 (例: 900):</label>
+        <input type="text" id="startTime" required>
+
+        <label for="shiftDuration">長さ (分):</label>
+        <input type="number" id="shiftDuration" required>
+
+        <label for="totalShifts">合計シフト数:</label>
+        <input type="number" id="totalShifts" required>
+
+        <label for="bandNames">バンド名 (カンマ区切り):</label>
+        <input type="text" id="bandNames" required>
+
+        <button type="submit">シフト表を生成</button>
+        <button type="button" id="savePresetButton">プリセットを保存</button>
+        <button type="button" id="loadPresetButton">プリセットを読み込み</button>
+    </form>
+    
+    <div id="scheduleOutput"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
